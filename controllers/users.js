@@ -4,16 +4,12 @@ const User = require('../models/userModel')
 userRouter.get('/', (request,response)=>{
   User.find({})
     .then((res)=>{
-      console.log(res)
+      response.status(200).json(res)
     })
-  response.json({hola:'mundo'})
 })
 
 userRouter.post('/', (request, response) => {
-  console.log('hola')
-  console.log({request})
   const { body } = request
-  console.log(body)
   const { nombre, pais } = body
 
   const user = new User({
@@ -22,7 +18,7 @@ userRouter.post('/', (request, response) => {
   })
   user.save()
     .then((savedUser)=>{
-      response.status(200).json(savedUser)
+      response.status(201).json(savedUser)
     })
 })
 
