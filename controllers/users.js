@@ -18,7 +18,10 @@ userRouter.post('/', (request, response) => {
   })
   user.save()
     .then((savedUser)=>{
-      response.status(201).json(savedUser)
+      response.status(201).json(savedUser).end()
+    })
+    .catch((error) => {
+      console.error(error)
     })
 })
 
